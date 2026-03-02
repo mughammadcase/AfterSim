@@ -95,13 +95,26 @@ export function startGame() {
   gameLoop(); // The main game loop
 
   function displayPlayerStats(player) {
-    console.log("Age:", player.age);
-    console.log("Month:", player.month);
-    console.log("Year:", player.year);
-    console.log(`Money: $${player.money}`);
-    console.log(`Health: ${player.health}`);
-    console.log("Discipline:", player.discipline);
-    console.log(`Happiness: ${player.happiness}`);
-    console.log("Reputation:", player.reputation);
-  } // Display Logic to show in console
+    console.log("==================================================");
+    console.log(
+      ` AGE ${player.age} | YEAR ${player.year} | MONTH ${player.month}`,
+    );
+    console.log("--------------------------------------------------");
+
+    console.log(
+      ` HEALTH: ${String(player.health).padEnd(3)}   HAPPINESS: ${String(
+        player.happiness,
+      ).padEnd(3)}   DISCIPLINE: ${String(player.discipline).padEnd(3)}`,
+    );
+
+    console.log(
+      ` MONEY: $${String(player.money).padEnd(5)}   REPUTATION: ${String(
+        player.reputation,
+      ).padEnd(3)}`,
+    );
+
+    console.log("==================================================");
+    console.log("\n[ Message Area ]\n"); // The life event and consequences will be displayed here
+    console.log("==================================================");
+  }
 }
