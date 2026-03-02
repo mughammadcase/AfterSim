@@ -7,6 +7,8 @@ export function startGame() {
 
   const player = new Player(); // Create a new player instance
 
+  let monthlyMessages = []; // Array to hold messages for the current month
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -41,8 +43,8 @@ export function startGame() {
         return true;
 
       case "4":
-        console.log(
-          "You let the month pass without doing anything. Time flies...",
+        monthlyMessages.push(
+          "You spent the month doing nothing. Time passes by...",
         );
         return true;
 
@@ -54,7 +56,7 @@ export function startGame() {
 
   function gameLoop() {
     console.clear();
-    displayPlayerStats(player);
+    displayPlayerStats(player, monthlyMessages);
 
     // Check for death conditions
     if (player.health <= 0) {
@@ -67,26 +69,31 @@ export function startGame() {
     }
 
     showMenu();
-    askforChoice();
+    askForChoice();
   }
 
-  function askforChoice() {
+  function askForChoice() {
     rl.question("Enter your choice: ", (answer) => {
       const isValidChoice = handleChoice(answer);
 
       if (!isValidChoice) {
-        return askforChoice();
+        return askForChoice();
       }
 
       const eventTriggered = Math.random() < 0.3;
 
       if (eventTriggered) {
-        triggerRandomEvents(player);
+        triggerRandomEvents(player, monthlyMessages);
       }
 
       player.ageUp();
 
+      // RE-RENDER after events and consequences
+      console.clear();
+      displayPlayerStats(player, monthlyMessages);
+
       rl.question("\nPress Enter to continue...", () => {
+        monthlyMessages = [];
         gameLoop();
       });
     });
@@ -94,7 +101,7 @@ export function startGame() {
 
   gameLoop(); // The main game loop
 
-  function displayPlayerStats(player) {
+  function displayPlayerStats(player, monthlyMessages) {
     console.log("==================================================");
     console.log(
       ` AGE ${player.age} | YEAR ${player.year} | MONTH ${player.month}`,
@@ -114,7 +121,16 @@ export function startGame() {
     );
 
     console.log("==================================================");
-    console.log("\n[ Message Area ]\n"); // The life event and consequences will be displayed here
-    console.log("==================================================");
+    console.log("\n[ Life Events & Monthly Feedback ]\n");
+
+    if (monthlyMessages.length === 0) {
+      console.log("  Nothing significant happened.");
+    } else {
+      monthlyMessages.forEach((msg) => {
+        console.log("  - " + msg);
+      });
+    }
+
+    console.log("\n--------------------------------------------------");
   }
 }

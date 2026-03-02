@@ -1,4 +1,4 @@
-export function triggerRandomEvents(player) {
+export function triggerRandomEvents(player, monthlyMessages) {
   const events = [
     // List of possible random events and effects on Unc's stats
     {
@@ -34,8 +34,8 @@ export function triggerRandomEvents(player) {
   const randomIndex = Math.floor(Math.random() * events.length);
   const event = events[randomIndex]; // Selects random event from list
 
-  console.log("\n--- RANDOM EVENT ---");
-  console.log(event.text); // Displays event text to player
+  monthlyMessages.push("--- RANDOM EVENT ---");
+  monthlyMessages.push(event.text);
 
   event.effect();
 }
