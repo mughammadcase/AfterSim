@@ -1,27 +1,36 @@
-# 🗣️ UncLife (CLI Life Simulation Game)
+# ☢️ AfterSim
 
-> _A console-based life simulation game about navigating peak unc status_
-
----
-
-You wake up in 2026.
-You're 25.
-Still living at your parents' house.
-
-**_Something changes._**
+> _A post-apocalyptic life simulation about survival, choices, and consequence._
 
 ---
 
-## What is UncLife?
+## The Concept
 
-UncLife drops you into the slow-burn reality of adult life and asks one question: _what are you actually going to do about it?_
+UncLife is a month-based survival simulator set in a collapsing world.
 
-Make decisions. Watch the months pass. Let your choices influence your reality.
+_You are not a hero. You are a survivor._
 
-> **"Unc"** - Gen Z/Alpha slang for _uncle_. Used online to describe someone who's old, getting old, or just... acting like it. "Unc status" is a vibe. An era. A warning.
+Every month, you make decisions:
 
-Will you become a successful unc?
-Or slowly fade into irrelevance?
+- search for supplies
+- risk your safety
+- deal with other survivors
+
+And live with the consequences.
+
+---
+
+## Current Direction
+
+This project is being actively refactored from a modern life simulator into a:
+
+> _Post-apocalyptic survival simulation_
+
+### In Progress
+
+- Replacing money → resources (food, water, ammo, medicine)
+- Reworking stats → survival-based system
+- Converting events → scavenging & encounters
 
 ---
 
@@ -29,15 +38,9 @@ Or slowly fade into irrelevance?
 
 - Node.js
 - Javascript (ES Modules)
-- Console-based interface
+- CLI (readline)
 
 ---
-
-## Features
-
-- Player class with stats (age, year, month)
-- Interactive monthly progression
-- Recursive game loop using Node's readline module
 
 ## How to Run
 
@@ -45,10 +48,38 @@ Or slowly fade into irrelevance?
 2. Run `npm install`
 3. Run `npm start`
 
-## Project Status
+---
 
-Early development.
-Currently implementing
+## Project Structure
 
-- Player system
-- Time Progression (monthly)
+docs/
+DESIGN.md
+DEVLOG.md
+HOW_TO_PLAY.md
+ROADMAP.md
+SYSTEMS.md
+
+src/
+events.js
+game.js
+index.js
+player.js
+
+.gitignore
+LICENSE
+package.json
+README.md
+
+Planned:
+
+    engine/
+    world/
+    ui/
+
+---
+
+## Important to Note:
+
+This is an evolving project. Expect breaking changes during the early stage of development.
+
+---
