@@ -122,15 +122,21 @@ export function startGame() {
     console.log("--------------------------------------------------");
 
     console.log(
-      ` HEALTH: ${String(player.health).padEnd(3)}   HAPPINESS: ${String(
-        player.happiness,
-      ).padEnd(3)}   DISCIPLINE: ${String(player.discipline).padEnd(3)}`,
+      ` HEALTH: ${String(player.health).padEnd(3)}   MORALE: ${String(
+        player.morale,
+      ).padEnd(3)}   HUNGER: ${String(player.hunger).padEnd(3)}`,
     );
 
     console.log(
-      ` MONEY: $${String(player.money).padEnd(5)}   REPUTATION: ${String(
+      ` RADIATION: ${String(player.radiation).padEnd(3)}   REPUTATION: ${String(
         player.reputation,
       ).padEnd(3)}`,
+    );
+
+    console.log("\n SUPPLIES:"); // Introduce a new economy layer
+
+    console.log(
+      ` FOOD: ${player.supplies.food}   WATER: ${player.supplies.water}   MED: ${player.supplies.medicine}   AMMO: ${player.supplies.ammo}`,
     );
 
     console.log("==================================================");
