@@ -20,39 +20,58 @@ export function startGame() {
 
   console.log("Welcome to UncLife!");
 
-  // UI actions menu (displays available choices) - to be randomized in future
   function showMenu() {
     console.log("\nWhat do you do this month?");
-    console.log("1. Work overtime");
-    console.log("2. Exercise");
-    console.log("3. Relax");
-    console.log("4. Do nothing");
+    console.log("1. Scavenge");
+    console.log("2. Rest");
+    console.log("3. Use Supplies");
+    console.log("4. Wait");
   }
 
-  // Handles/Changes player stats based on selected choices
-  // Returns true if valid, false if choice is invalid then prompts to select again
+  /**
+   *
+   * @param {*} choice
+   * @returns
+   */
   function handleChoice(choice) {
     switch (choice) {
-      case "1": // Work overtime
-        player.money += 200;
+      case "1": // Scavenge
+        monthlyMessages.push("You went scavenging...");
+
+        // Small guaranteed gain
+        player.supplies.food += 1;
+
+        //risk
         player.health -= 5;
-        player.discipline += 2;
+        player.radiation += 3;
+
         return true;
 
-      case "2": // Exercise
+      case "2": // Rest
+        monthlyMessages.push("You took time to rest.");
+
         player.health += 5;
-        player.happiness += 3;
+        player.morale += 3;
+
         return true;
 
-      case "3": // Relax
-        player.happiness += 5;
-        player.discipline -= 3;
+      case "3": // Use Supplies
+        monthlyMessages.push("You used your supplies.");
+
+        if (player.supplies.food > 0) {
+          player.supplies.food--;
+          player.hunger -= 20;
+        } else {
+          monthlyMessages.push("You have no food...");
+          player.morale -= 5;
+        }
+
         return true;
 
-      case "4": // Do nothing
-        monthlyMessages.push(
-          "You spent the month doing nothing. Time passes by...",
-        );
+      case "4": // Wait
+        monthlyMessages.push("You wait. The world moves on...");
+
+        // No benefits as time pressure affects player
         return true;
 
       default:
